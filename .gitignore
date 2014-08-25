@@ -1,0 +1,15 @@
+*/target/**
+target/
+.project
+*/.project
+*/.classpath
+.metadata/*
+*.iml
+*.ipr
+*.iws
+*.swp
+*.orig
+*.rej
+*.ids
+out/*
+.idea/*
