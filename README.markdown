@@ -22,8 +22,8 @@ The main project is a very basic user management application. We are not looking
 
 Feel free to modify whatever you want! :)
 
-Pre-reqs
---------
+Prerequisites
+-------------
 
 * You must have a Github account. If you don't have one, please create one via the [Github website](http://github.com/).
 
@@ -36,15 +36,14 @@ Pre-reqs
 Instructions
 ------------
 
-1. Fork this repo using the Github website.
-1. Clone your new forked repo from Github.
+1. Clone this repo from Github to your local machine 
 1. At the project root directory, run the following command from the command-line:
     `$ mvn package`
-1. Once the previous step completes successfully, the build should have run successfully and every test should be green.
-1. Now perform the refactoring you deem necessary by using your knowledge of Java/Spring best practices. Remember that this includes both code and tests. Also, please feel free to innovate!.
-1. Please make sure that your code compiles and that all tests are green when you are done.
-1. When you are finished please commit your code on your local machine and then push it to your forked Github repo. Please DO NOT create a pull request against this repo.
-1. The final step is to send an email to your contact at hybris software to inform this person that you have finished the test. Please make sure to provide your Github username.
+1. Once the previous step completes successfully, the build should have run successfully and every test should be green
+1. Now perform the refactoring you deem necessary by using your knowledge of Java/Spring best practices. Remember that this includes both code and tests. Also, please feel free to innovate!
+1. Please make sure that your code compiles and that all tests are green when you are done
+1. When you are finished please commit your code on your local machine and then [create a patch using git](http://git-scm.com/docs/git-format-patch). Please DO NOT create a pull request against this repo.
+1. The final step is to send an email to your contact at hybris software to inform this person that you have completed the test. Please make sure to attach a copy of the patch containing your changes!
 
 Business Requirements
 ---------------------
