@@ -1,12 +1,12 @@
-Java Refactoring Test Project
-=============================
+Java Refactoring Exercise 
+=========================
 
-**Please, before starting this test, read through all of the instructions carefully!**
+**Please, before starting this exercise, read through all of the instructions carefully!**
 
 Introduction
 ------------
 
-This is a test project used by hybris software hiring process to test your knowledge of Java/Spring best practices and refactoring.
+This project is used within the hybris software hiring process to determine knowledgm of Java/Spring best practices and refactoring.
 
 The idea of this exercise is to evaluate your ability to identify poor coding practices and improve the code through the use of best practices.
 
@@ -43,7 +43,7 @@ Instructions
 1. Now perform the refactoring you deem necessary by using your knowledge of Java/Spring best practices. Remember that this includes both code and tests. Also, please feel free to innovate!
 1. Please make sure that your code compiles and that all tests are green when you are done
 1. When you are finished please commit your code on your local machine and then [create a patch using git](http://git-scm.com/docs/git-format-patch). Please DO NOT create a pull request against this repo.
-1. The final step is to send an email to your contact at hybris software to inform this person that you have completed the test. Please make sure to attach a copy of the patch containing your changes!
+1. The final step is to send an email to your contact at hybris software to inform this person that you have completed the exercise. Please make sure to attach a copy of the patch containing your changes!
 
 Business Requirements
 ---------------------

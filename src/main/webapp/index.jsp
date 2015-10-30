@@ -1,8 +1,8 @@
 <html>
 <head>
-    <title>H2RD - Java Refactoring Test</title>
+    <title>H2RD - Java Refactoring Exercise</title>
 </head>
 <body>
-    <h1>Java Refactoring Test</h1>
+    <h1>Java Refactoring Exercise</h1>
 </body>
 </html>

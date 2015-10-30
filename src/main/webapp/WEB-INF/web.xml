@@ -5,10 +5,10 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-    <display-name>java-refactoring-test</display-name>
+    <display-name>java-refactoring-exercise</display-name>
 
   	<servlet>
-		<servlet-name>refactoring-test</servlet-name>
+		<servlet-name>refactoring-exercise</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<init-param>
 		     <param-name>com.sun.jersey.config.property.packages</param-name>
@@ -18,7 +18,7 @@
 	</servlet>
  
 	<servlet-mapping>
-		<servlet-name>refactoring-test</servlet-name>
+		<servlet-name>refactoring-exercise</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 

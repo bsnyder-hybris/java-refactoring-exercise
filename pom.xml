@@ -4,12 +4,12 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.h2rd</groupId>
-	<artifactId>java-refactoring-test</artifactId>
+	<artifactId>java-refactoring-exercise</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>Java Refactoring Test</name>
-	<description>Java Refactoring Test</description>
+	<name>Java Refactoring Exercise</name>
+	<description>Java Refactoring Exercise</description>
 
     <dependencies>
         <dependency>
