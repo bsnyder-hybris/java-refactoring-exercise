@@ -6,7 +6,7 @@ Java Refactoring Exercise
 Introduction
 ------------
 
-This project is used within the hybris software hiring process to determine knowledgm of Java/Spring best practices and refactoring.
+This project is used within the hybris software hiring process to determine knowledge of Java/Spring best practices and refactoring.
 
 The idea of this exercise is to evaluate your ability to identify poor coding practices and improve the code through the use of best practices.
 
