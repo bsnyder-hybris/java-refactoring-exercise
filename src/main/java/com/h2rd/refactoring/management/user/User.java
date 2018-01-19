@@ -32,6 +32,12 @@ public class User {
     @NotNull(groups = User.Existing.class)
     private UUID id;
 
+    @Version
+    @Column(name = "USER_VERSION", nullable = false)
+    @NotNull(groups = User.Existing.class)
+    @JsonView({UserView.NewUser.class, UserView.ExistingUser.class})
+    private Long version;
+
     @Column(name = "USER_FIRST_NAME", nullable = false)
     @JsonView({UserView.ExistingUser.class, UserView.NewUser.class})
     @NotNull

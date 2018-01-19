@@ -2,7 +2,6 @@ package com.h2rd.refactoring.management.user;
 
 import com.h2rd.refactoring.management.Role;
 import org.assertj.core.api.Assertions;
-import org.h2.jdbc.JdbcSQLException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,5 +61,14 @@ public class UserRepositoryTest {
         UUID id = (UUID) entityManager.persistAndGetId(user1);
 
         Assertions.assertThat(repository.getUserByEmail("asdf@gmail.com")).isEqualToComparingFieldByField(user1.toBuilder().id(id).build());
+    }
+
+    @Test
+    public void testUpdateUserIncrementVersion(){
+        User user = User.builder().email("asdf@gmail.com").firstName("Mike").lastName("Green").roles(roles).build();
+        User savedUser = entityManager.persistAndFlush(user);
+
+        User updatedUser = savedUser.toBuilder().firstName("Michael").build();
+        Assertions.assertThat(repository.saveAndFlush(updatedUser).getVersion()).isEqualTo(1);
     }
 }
