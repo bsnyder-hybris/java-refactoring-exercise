@@ -1,7 +1,5 @@
 package com.h2rd.refactoring.management.user;
 
-import com.h2rd.refactoring.management.user.User;
-
 import java.util.List;
 import java.util.UUID;
 

@@ -65,6 +65,15 @@ Good luck!
 
 # App Usage
 
+To test the application:
+ 1. Run integration tests
+
+    ```./mvnw verify -P integration-test```
+
+ 1. Run unit tests
+
+    ```./mvnw test```
+
 To utilize the docker feature:
 
  1. Build the application

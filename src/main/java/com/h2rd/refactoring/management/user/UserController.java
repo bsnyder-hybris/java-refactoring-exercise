@@ -2,7 +2,6 @@ package com.h2rd.refactoring.management.user;
 
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
-import javax.xml.ws.Response;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +23,12 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = UserController.USER_CONTROLLER_URI_PATH)
 public class UserController {
 
-    Logger log = LoggerFactory.getLogger(UserController.class.getSimpleName());
+    private Logger log = LoggerFactory.getLogger(UserController.class);
+
+    public static final String USER_CONTROLLER_URI_PATH = "/users";
 
     @Autowired
     public UserService userService;
@@ -42,7 +43,7 @@ public class UserController {
                 User createdUser = userService.saveUser(user);
 
                 HttpHeaders headers = new HttpHeaders();
-                headers.setLocation(uriComponentsBuilder.path("/users/{id}").buildAndExpand(createdUser.getId()).toUri());
+                headers.setLocation(uriComponentsBuilder.path(UserController.USER_CONTROLLER_URI_PATH + "/{id}").buildAndExpand(createdUser.getId()).toUri());
 
                 return new ResponseEntity(headers, HttpStatus.CREATED);
             } catch (DataIntegrityViolationException d) {
@@ -55,17 +56,16 @@ public class UserController {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public CompletableFuture updateUser(WebRequest request, @PathVariable @NotNull UUID id, @Validated(User.Existing.class) @RequestBody User user, UriComponentsBuilder uriComponentsBuilder) {
         log.info("UpdateUserThread-" + Thread.currentThread().getName());
-
         return CompletableFuture.supplyAsync(() -> {
             log.info("CF-UpdateUserThread-" + Thread.currentThread().getName());
+            String ifMatchHeaderValue = request.getHeader(HttpHeaders.IF_MATCH);
             if (!id.equals(user.getId())) {
                 return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
             } else if (userService.getUserById(id) == null) {
                 return new ResponseEntity(HttpStatus.NOT_FOUND);
-            } else if (request.getHeader("If-Match").isEmpty()){
+            } else if (ifMatchHeaderValue == null || ifMatchHeaderValue.isEmpty()){
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
             } else {
-                String ifMatchHeaderValue = request.getHeader("If-Match");
                 User foundUser = userService.getUserById(id);
 
                 if (!ifMatchHeaderValue.equals(foundUser.getVersion().toString())){
@@ -75,7 +75,7 @@ public class UserController {
                         User updatedUser = userService.updateUser(user);
 
                         HttpHeaders headers = new HttpHeaders();
-                        headers.setLocation(uriComponentsBuilder.path("/users/{id}").buildAndExpand(user.getId().toString()).toUri());
+                        headers.setLocation(uriComponentsBuilder.path(UserController.USER_CONTROLLER_URI_PATH + "/{id}").buildAndExpand(user.getId().toString()).toUri());
                         headers.setETag("\"" + updatedUser.getVersion() + "\"");
 
                         return new ResponseEntity(headers, HttpStatus.NO_CONTENT);

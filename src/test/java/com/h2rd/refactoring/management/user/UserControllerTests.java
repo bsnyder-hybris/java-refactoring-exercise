@@ -1,10 +1,12 @@
 package com.h2rd.refactoring.management.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.h2rd.refactoring.UnitTest;
 import com.h2rd.refactoring.management.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -35,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringBootTest
+@Category(UnitTest.class)
 public class UserControllerTests {
 
     @Autowired
@@ -73,7 +76,7 @@ public class UserControllerTests {
     @Test
     public void testGetUserByIdNotFound() throws Exception {
         UUID userId = UUID.randomUUID();
-        MvcResult result = mockMvc.perform(get("/users/" + userId))
+        MvcResult result = mockMvc.perform(get(UserController.USER_CONTROLLER_URI_PATH + "/" + userId))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -90,7 +93,7 @@ public class UserControllerTests {
 
         Mockito.when(userService.getUserById(Mockito.any(UUID.class))).thenReturn(user);
 
-        MvcResult result = mockMvc.perform(get("/users/" + id))
+        MvcResult result = mockMvc.perform(get(UserController.USER_CONTROLLER_URI_PATH + "/" + id))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -104,7 +107,7 @@ public class UserControllerTests {
 
     @Test
     public void testGetAllUsersNoContent() throws Exception {
-        MvcResult result = mockMvc.perform(get("/users"))
+        MvcResult result = mockMvc.perform(get(UserController.USER_CONTROLLER_URI_PATH))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -123,7 +126,7 @@ public class UserControllerTests {
         users.add(user);
         Mockito.when(userService.findUsersByFirstNameAndLastName("Steve", "")).thenReturn(users);
 
-        MvcResult result = mockMvc.perform(get("/users?firstName=Steve"))
+        MvcResult result = mockMvc.perform(get(UserController.USER_CONTROLLER_URI_PATH + "?firstName=Steve"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -145,7 +148,7 @@ public class UserControllerTests {
         users.add(User.builder().email("asdf@gmail.com").firstName("Mike").lastName("Blue").roles(roles).id(id).build());
         Mockito.when(userService.findUsersByFirstNameAndLastName("", "Blue")).thenReturn(users);
 
-        MvcResult result = mockMvc.perform(get("/users?lastName=Blue"))
+        MvcResult result = mockMvc.perform(get(UserController.USER_CONTROLLER_URI_PATH + "?lastName=Blue"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -167,7 +170,7 @@ public class UserControllerTests {
         users.add(User.builder().email("asdf@gmail.com").firstName("Mike").lastName("Blue").roles(roles).id(id).build());
         Mockito.when(userService.findUsersByFirstNameAndLastName("", "")).thenReturn(users);
 
-        MvcResult result = mockMvc.perform(get("/users?firstName=&lastName="))
+        MvcResult result = mockMvc.perform(get(UserController.USER_CONTROLLER_URI_PATH + "?firstName=&lastName="))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -181,7 +184,7 @@ public class UserControllerTests {
 
     @Test
     public void testDeleteUserNotFound() throws Exception {
-        MvcResult result = mockMvc.perform(delete("/users/" + UUID.randomUUID()))
+        MvcResult result = mockMvc.perform(delete(UserController.USER_CONTROLLER_URI_PATH + "/" + UUID.randomUUID()))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -198,7 +201,7 @@ public class UserControllerTests {
         Mockito.when(userService.getUserById(user.getId())).thenReturn(user);
         Mockito.doNothing().when(userService).deleteUser(Mockito.any(User.class));
 
-        MvcResult result = mockMvc.perform(delete("/users/" + user.getId()))
+        MvcResult result = mockMvc.perform(delete(UserController.USER_CONTROLLER_URI_PATH + "/" + user.getId()))
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
 
@@ -214,7 +217,7 @@ public class UserControllerTests {
 
         Mockito.when(userService.saveUser(Mockito.any(User.class))).thenReturn(newUser);
 
-        MvcResult result = mockMvc.perform(post("/users").content(mapper.writeValueAsBytes(user)).contentType(MediaType.APPLICATION_JSON))
+        MvcResult result = mockMvc.perform(post(UserController.USER_CONTROLLER_URI_PATH).content(mapper.writeValueAsBytes(user)).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.request().asyncStarted())
                 .andReturn();
@@ -242,7 +245,7 @@ public class UserControllerTests {
 
         MvcResult result =
                 mockMvc.perform(
-                        put("/users/" + user.getId())
+                        put(UserController.USER_CONTROLLER_URI_PATH + "/" + user.getId())
                                 .content(mapper.writeValueAsBytes(user))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .header("If-Match", "0"))
@@ -269,7 +272,7 @@ public class UserControllerTests {
 
         MvcResult result =
                 mockMvc.perform(
-                        put("/users/" + UUID.randomUUID())
+                        put(UserController.USER_CONTROLLER_URI_PATH + "/" + UUID.randomUUID())
                                 .content(mapper.writeValueAsBytes(user))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .header("If-Match", "0"))
@@ -287,7 +290,7 @@ public class UserControllerTests {
 
         MvcResult result =
                 mockMvc.perform(
-                        put("/users/" + user.getId())
+                        put(UserController.USER_CONTROLLER_URI_PATH + "/" + user.getId())
                                 .content(mapper.writeValueAsBytes(user))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .header("If-Match", "0"))

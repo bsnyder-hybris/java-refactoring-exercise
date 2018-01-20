@@ -28,3 +28,9 @@
   - Update README with docker usage
 - Eager load Roles on user
 - Add docker dependency to pom for main class detection
+
+### Fourth Patch
+- Add integration tests
+- Configure maven to only run the integration tests when using the integration-test profile
+- Configure failsafe and surefire
+- Package integration tests in their own directory under /src.

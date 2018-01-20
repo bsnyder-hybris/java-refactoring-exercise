@@ -1,9 +1,11 @@
 package com.h2rd.refactoring.management.user;
 
+import com.h2rd.refactoring.UnitTest;
 import com.h2rd.refactoring.management.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,6 +19,7 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@Category(UnitTest.class)
 public class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
