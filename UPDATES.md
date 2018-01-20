@@ -34,3 +34,12 @@
 - Configure maven to only run the integration tests when using the integration-test profile
 - Configure failsafe and surefire
 - Package integration tests in their own directory under /src.
+
+### Future Features
+- Implement a real database instead of in memory.
+  - Configure Docker-Compose to create the db and then the app.
+- Add some gatling reports to validate SLAs for load
+- Fix swagger-ui to work when deployed.
+- Refactor the delete operation to instead update the user with a deleted flag
+  - Add createdAt and updatedAt timestamps to the user model.
+- Add metrics library to gather info on usage of different endpoints.

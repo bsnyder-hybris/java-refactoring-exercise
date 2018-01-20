@@ -65,6 +65,9 @@ Good luck!
 
 # App Usage
 
+API Endpoints - run the app in intellij and the swagger ui will be available.
+http://localhost:8080/swagger-ui.html
+
 To test the application:
  1. Run integration tests
 
