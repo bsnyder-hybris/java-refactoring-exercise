@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -53,10 +54,10 @@ public class User {
     @NotNull
     private String email;
 
-    @ElementCollection(targetClass = Role.class)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @JsonView({UserView.ExistingUser.class, UserView.NewUser.class})
-    @NotNull
+    @NotNull(groups = {User.New.class, User.Existing.class})
     private List<Role> roles;
 
     public interface New{}

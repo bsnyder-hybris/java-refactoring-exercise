@@ -32,7 +32,6 @@ public class UserController {
     @Autowired
     public UserService userService;
 
-    //TODO: Implement deferredResult
     @Consumes("application/json")
     @RequestMapping(method = RequestMethod.POST)
     public CompletableFuture<ResponseEntity> addUser(@Validated(User.New.class) @RequestBody User user, UriComponentsBuilder uriComponentsBuilder) {
@@ -52,7 +51,6 @@ public class UserController {
         });
     }
 
-    //TODO: Implement deferredResult
     @Consumes("application/json")
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public CompletableFuture updateUser(WebRequest request, @PathVariable @NotNull UUID id, @Validated(User.Existing.class) @RequestBody User user, UriComponentsBuilder uriComponentsBuilder) {

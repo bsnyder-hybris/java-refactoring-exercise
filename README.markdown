@@ -62,3 +62,18 @@ Tips
 
 Good luck!
 
+
+# App Usage
+
+To utilize the docker feature:
+
+ 1. Build the application
+
+    ```./mvnw package```
+ 1. Build the docker image
+
+    ```docker build -t hybris/refactoring:latest```
+
+ 1. Run the docker image. -d detaches, -p forwards the internal 8080 port to the docker vm port.
+
+    ```docker run -d --name hybris -p 8080:8080 refactoring:latest```
