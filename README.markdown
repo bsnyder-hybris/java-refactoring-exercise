@@ -62,3 +62,30 @@ Tips
 
 Good luck!
 
+
+# App Usage
+
+API Endpoints - run the app in intellij and the swagger ui will be available.
+http://localhost:8080/swagger-ui.html
+
+To test the application:
+ 1. Run integration tests
+
+    ```./mvnw verify -P integration-test```
+
+ 1. Run unit tests
+
+    ```./mvnw test```
+
+To utilize the docker feature:
+
+ 1. Build the application
+
+    ```./mvnw package```
+ 1. Build the docker image
+
+    ```docker build -t hybris/refactoring:latest```
+
+ 1. Run the docker image. -d detaches, -p forwards the internal 8080 port to the docker vm port.
+
+    ```docker run -d --name hybris -p 8080:8080 refactoring:latest```
